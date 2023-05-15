@@ -1,0 +1,5 @@
+INSERT INTO `shirt` (`id`, `name`,`description`, `price`,`category_id`) VALUES (1,'Red Colour Sport T-Shirt','Suitable for exercise, fast dry and absorbing sweat, light weight',12.0,1);
+INSERT INTO `shirt` (`id`, `name`,`description`, `price`,`category_id`) VALUES (2,'Orange Colour Sport T-Shirt','Suitable for exercise, fast dry and absorbing sweat, light weight',12.0,1);
+INSERT INTO `shirt` (`id`, `name`,`description`, `price`,`category_id`) VALUES (3,'Yellow colour cotton t shirt','not suitable for exercise ,suitable for shoppingMade up by Cotton, Ideal for casual, can wear everyday',8.0,2);
+INSERT INTO `shirt` (`id`, `name`,`description`, `price`,`category_id`) VALUES (4,'Pink Colour Sport T-Shirt','not suitable for exercise ,suitable for shopping,Made up by Cotton, Ideal for casual, can wear everyday',8.0,2);
+INSERT INTO `shirt` (`id`, `name`,`description`, `price`,`category_id`) VALUES (5,'Blue Colour Sport T-Shirt','not suitable for exercise ,suitable for shoppingMade up by Cotton, Ideal for casual, can wear everyday',8.0,2);

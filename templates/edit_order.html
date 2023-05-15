@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>myShirt - Edit Order</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+</head>
+<style>
+body {
+	background-color: Cornsilk;
+}
+
+
+</style>
+<script type="text/javascript">
+function edit(){
+    alert("Order updated successfully."+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+
+</script>
+<body>
+	<div class="container">
+	<div th:replace="fragments/header"></div>
+		<div class="h1">Edit Order</div>
+		<form th:action="@{/order/update/{id}(id=${order.id})}" th:object="${order}" method="post">
+		<div class="mb-3 col-5">
+		<label for="order_name"class="form-label"> Order: </label>
+		<input id="order_name" type="text" class="form-control" th:field="*{description}"/>
+		</div>
+		<div class="mt-3 mb-5">
+		<input type="submit" class="btn btn-success" onclick="edit()" value="Update Order" >
+		</div>
+		</form>
+	</div>
+</body>
+<div th:replace="fragments/footer"></div>
+</html>

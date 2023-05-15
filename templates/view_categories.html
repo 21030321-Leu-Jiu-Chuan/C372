@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>myShirt - View Categories</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+body {
+	background-color: Cornsilk;
+}
+
+
+</style>
+<script>
+function deleteing(){
+    alert("Category is deleted."+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+function editing(){
+    alert("Directing to edit page , please wait patiently , thank you :)"+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+</script>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header"></div>
+		<div class="h1">View Categories <a href="http://localhost:8080/categories/add" class="btn  btn-success ">+ Add Category</a></div> 
+		<table class="table bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Category</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+					<tr th:each="category : ${listCategories}">
+						<td th:text="${category.id}"></td>
+						<td th:text="${category.name}"></td>
+						<td><a th:href="@{/categories/edit/{id}(id=${category.id})}" class="btn  btn-success" onclick="editing()">Edit Cateogry</a> <a th:href="@{/categories/delete/{id}(id=${category.id})}" class="btn  btn-danger " onclick="deleteing()">Delete Category</a></td>
+						
+					</tr>
+					
+				
+			</tbody>
+		</table>
+	
+	</div>
+
+		
+								
+</body>
+	<div th:replace="fragments/footer"></div>
+</html>
