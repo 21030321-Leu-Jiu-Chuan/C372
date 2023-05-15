@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>MyShirt - Purchase History</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+body {
+	background-color: Cornsilk;
+	
+}
+div{
+color:orange;
+}
+th{
+color:orange;
+}
+td{
+color:orange;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header"></div>
+		<table>
+  <tr th:each="cartItem : ${cartItemList}">
+    <th>Member:</th>
+    <th th:text="${cartItem.member.name}"></th>
+  </tr>
+</table>
+		<main>
+			
+
+			<table class="table bordered">
+			<thead>
+				<tr>
+					
+					<th>Order ID</th>
+					<th>Transaction ID</th>
+					<th>Shirt</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+			
+					<tr th:each="orderItem : ${orderItemList}">
+					
+						<td th:text="${orderItem.orderid}"></td>
+						<td th:text="${orderItem.transactionid}"></td>
+						<td th:text="${orderItem.shirt.name}"></td>
+						<td th:text="${orderItem.quantity}"></td>
+						<td th:text="${orderItem.subTotal}"></td>
+						
+					</tr>
+					
+				
+			</tbody>
+		</table>
+		</main>
+<h1>Thank You for the purchase:)</h1>
+	</div>
+</body>
+<div th:replace="fragments/footer"></div>

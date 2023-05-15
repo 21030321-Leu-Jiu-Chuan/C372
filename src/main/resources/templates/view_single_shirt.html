@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>MyShirt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script >
+	
+</script>
+
+<style>
+body {
+	background-color: Cornsilk;
+}
+h1{
+color:orange;
+}
+h5{
+color:orange;
+}
+p{
+color:orange;
+}
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+	<div th:replace="fragments/header"></div>
+		<main>
+			<h1>Name: <span th:text="${shirt.name}"></span></h1>
+			<h5>Category: <span th:text="${shirt.category.name}"></span></h5>
+			<img th:src="@{/uploads/shirt/{id}/{imageName}(id=${shirt.id},imageName=${shirt.imgName})}">
+			<p>Description: <span  th:text="${shirt.description}"></span></p>
+			<p>Price: $<span th:text="${shirt.price}"></span></p>
+			<p>Quantity available:<span th:text="${shirt.quantity}"></span></p>
+			
+			<form action="/cart/save" method="post" th:object="${shirt}" enctype="multipart/form-data">
+		
+			</form>
+			<form class="needs-validation"  th:action="@{/cart/add/{shirtId}(shirtId=${shirt.id})}" th:object="${cartItem}" method="post" novalidate>
+		<input type="number" name="quantity" th:field="*{quantity}" value=6 required min=1/>
+		<div class="invalid-feedback">Please enter a positive whole number.</div>
+		<p class="text-danger" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
+		<button class="btn btn-primary">Add to Cart</button>
+		</form>
+		</main>
+	</div>
+
+</body>
+<div th:replace="fragments/footer"></div>
+</html>

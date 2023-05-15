@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>MyShirt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit-on">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js">
+	
+</script>
+
+<style>
+body {
+	background-color: Cornsilk;
+}
+h1{
+color:orange;
+}
+h5{
+color:orange;
+}
+h3{
+color:orange;
+}
+nav{
+display:flex;
+}
+.card-img-top {
+width: 100%;
+height: 40vh;
+object-fit: cover;
+}
+.card{
+    margin-bottom: 10px;
+}
+
+</style>
+<script>
+function edit(){
+    alert("Directing to edit shirt page, please wait patiently."+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+   
+function deleteShirt(){
+    alert("Shirt deleted successfully."+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+function addShirt(){
+    alert("Directing to add shirt page,  please wait patiently."+"\nIf the page is not changing please kindly refresh"+"\nThank You:)")
+   }
+</script>
+</head>
+<body>
+
+		<div class="container">
+		<div th:replace="fragments/header"></div>
+		<main>
+			<h1>Welcome to myShirt <a href="http://localhost:8080/shirt/add" class="btn  btn-success " onclick="addShirt()">+ Add Shirt</a></h1>
+		</main>
+			<div class="row g-3">
+				<th:block th:each="shirt : ${listShirt}">
+					<div class="col-12 col-md-6 col-lg-4">
+						<div class="card h-100 shadow " style="width:320px;height:500px">
+							
+							<img class="card-img-top "
+								th:src="@{/uploads/shirt/{id}/{imageName}(id=${shirt.id},imageName=${shirt.imgName})}"
+								>
+							<div class="card-body ">
+								<h3 class="card-title " th:text="${shirt.name}"></h3>
+							
+							<div class="card-footer">
+									<a th:href="@{/shirt/{id}(id=${shirt.id})}"
+										class="btn  btn-success">Read More</a> <a
+										th:href="@{/shirt/edit/{id}(id=${shirt.id})}"
+										class="btn  btn-success " onclick="edit()">Edit</a> <a
+										th:href="@{/shirt/delete/{id}(id=${shirt.id})}"
+										class="btn  btn-danger" onclick="deleteShirt()">Delete</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</th:block>
+			</div>
+		</div>
+	
+
+</body>
+<div th:replace="fragments/footer"></div>
+</html>

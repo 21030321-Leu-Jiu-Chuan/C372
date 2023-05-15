@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>MyShirt - Shopping Cart</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/js/bootstrap.js"></script>
+<script
+src="https://www.paypal.com/sdk/js?client-id=Af4O6b05Aat6O9GHnwfCG3PjVJxtimo8deMkV0nN5SOvzPK5hAmLz__7HEQzomIvmVP6JXOgu-z_rHkZ&currency=SGD&components=buttons">
+</script>
+<style>
+body {
+	background-color: Cornsilk;
+	
+}
+div{
+color:orange;
+}
+th{
+color:orange;
+}
+td{
+color:orange;
+}
+
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header"></div>
+		<main>
+			<div class="container ">
+				<div class="row fs-1 text-center">
+					<p>SHOPPING CART</p>
+				</div>
+				<div class="row mb-5">
+				<!-- shopping cart -->
+					<div class="col-8.5 ">
+						<div class="container ">
+						<!-- shopping cart items header -->
+							<div class="row m-3 border-top border-bottom fs-5">
+								<div class="col">SHIRTS</div>
+								<div class="col">DESCRIPTION</div>
+								<div class="col">PRICE</div>
+								<div class="col">QUANTITY</div>
+								<div class="col">SUBTOTAL</div>
+							</div>
+						<!-- shopping cart rows -->
+							<div class="row m-3 border-bottom"
+								th:each="cartItem : ${cartItemList}">
+								
+								<!-- Item name, description, image -->
+								<div class="col mb-3">
+									<h5 th:text="${cartItem.shirt.name}"></h5>
+									<img width="100px" th:src="@{/uploads/shirt/{id}/{imageName}(id=${cartItem.shirt.id}, imageName=${cartItem.shirt.imgName})}">
+								</div>
+								
+								<div class="col align-self-center" th:text="${cartItem.shirt.description}"> </div>
+								<!-- Item quantity, price, links -->
+								<div class="col align-self-center" th:text="'$'+${cartItem.shirt.price}"></div>
+								
+								<!-- Update item quantity form -->
+								<div class="col align-self-center">
+								<form class="needs-validation" th:action="@{/cart/update/{id}(id=${cartItem.id})}" method="post" novalidate>
+									<input type="number" name="qty" th:value="${cartItem.quantity}" th:id="${cartItem.id}" value=1 required min=1 />
+									<button class="btn btn-success">Update</button> <a class="btn btn-danger" th:href="@{/cart/remove/{id}(id=${cartItem.id})}">Remove</a>
+								</form>
+								
+								
+	
+								</div>
+									
+								<!-- Remove item link -->	
+									
+								
+								<div class="col align-self-center" th:text="'$'+${cartItem.subTotal}"></div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Order summary -->
+					<div class="col-4">
+						<div class="container ">
+							<div class="row  m-3 border-top border-bottom fw-bold">
+								<div class="col text-center fs-3">ORDER SUMMARY</div>
+							</div>
+							
+							<!-- Order summary rows -->
+							<div  class="row m-3 border-bottom" th:each="cartItem:${cartItemList}">
+								<div class="col fs-6">
+								<p th:text="${cartItem.shirt.name}+' x '+${cartItem.quantity}"></p>
+								</div>
+								<div class="col fs-6 text-end">
+									<p th:text="'$'+${cartItem.subTotal}"></p>
+								</div>
+							</div>
+							
+							<!-- COMPLETE CODE HERE -->
+							<div class="row  m-3 border-bottom fw-bold">
+								<div class="col fs-6">
+									<p>TOTAL</p>
+								</div>
+								<div class="col fs-6 text-end">
+									<p id="cartTotal" th:text="'$'+${cartTotal}"></p>
+									<div th:replace="fragments/paypal"></div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+	
+			</div>
+		</main>
+
+	</div>
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<title>MyShirt - Home</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
+<style>
+body {
+	background-color: Cornsilk;
+}
+div{
+color:orange;
+}
+th{
+color:orange;
+}
+td{
+color:orange;
+}
+h1{
+color:orange;
+}
+
+</style>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/header"></div>
+		<main>
+			<h1>Welcome to MyShirt</h1>
+			
+		</main>
+
+	</div>
+</body>
+<footer>
+<div th:replace="fragments/footer"></div>
+</footer>
+</html>
